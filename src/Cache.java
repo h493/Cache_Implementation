@@ -12,6 +12,7 @@ public class Cache {
     public void put(String key, String value){
         if(storage.isStorageFull()){
             evictionPolicy.evictKey();
+            storage.remove(key);
         }
         storage.add(key,value);
         evictionPolicy.keyAccessed(key);
